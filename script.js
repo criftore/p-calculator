@@ -3,6 +3,22 @@ let fValue = "";
 let sValue = "";
 // add
 
+let vBtn = document.querySelectorAll(".vBtn");
+let dCal = document.querySelector(".formDisplay");
+
+vBtn.forEach((value) => {
+  value.addEventListener("click", function () {
+    if (dCal.value === "...") {
+      dCal.value = "";
+    }
+    const idBtn = this.id;
+    const dBtn = this.innerText;
+    dCal.value += dBtn;
+
+    console.log(`ID : ${idBtn} Value :${dBtn}`);
+  });
+});
+
 const add = function (a, b) {
   return a + b;
 };
