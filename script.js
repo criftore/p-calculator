@@ -2,10 +2,12 @@
 let fValue = "";
 let sValue = "";
 let cOp = "";
+let final = "";
 // add
 
+let dCal = document.querySelector(".recentDisplay");
+let hCal = document.querySelector(".historyDisplay");
 let vBtn = document.querySelectorAll(".vBtn");
-let dCal = document.querySelector(".formDisplay");
 let opBtn = document.querySelectorAll(".opBtn");
 
 let cBtn = document.querySelector(".cBtn");
@@ -47,13 +49,13 @@ const operation = function (operator, fValue, sValue) {
 
 vBtn.forEach((value) => {
   value.addEventListener("click", function () {
-    if (dCal.value === "...") {
-      dCal.value = "";
+    if (dCal.innerText === "...") {
+      dCal.innerText = "";
     }
     const idBtn = this.id;
     const dBtn = this.innerText;
 
-    dCal.value += dBtn;
+    dCal.innerText += dBtn;
 
     console.log(`ID : ${idBtn} Value :${dBtn}`);
   });
@@ -61,32 +63,36 @@ vBtn.forEach((value) => {
 
 opBtn.forEach((operate) => {
   operate.addEventListener("click", function () {
-    if (dCal.value !== "") {
-      fValue = Number(dCal.value);
+    if (dCal.innerText !== "") {
+      fValue = Number(dCal.innerText);
     }
     cOp = this.innerText;
-
-    dCal.value += "\n" + cOp + " ";
+    hCal.innerText = fValue;
+    dCal.innerText = cOp + " ";
 
     console.log(`operasi : ${cOp} fValue : ${fValue}`);
   });
 });
 
 opValue.addEventListener("click", function () {
-  let contentArea = dCal.value.split("\n");
-  let sValue = Number(contentArea[1].replace(/[^0-9.]/g, ""));
+  let sValue = Number(dCal.innerText.replace(/[^0-9.]/g, ""));
 
-  let final = operation(cOp, fValue, sValue);
+  // let contentArea = dCal.value.split("\n");
+  // let sValue = Number(contentArea[1].replace(/[^0-9.]/g, ""));
 
-  dCal.value = `${fValue}${cOp}${sValue} \n ${final}`;
-  console.log(
-    `fValue :${fValue} Operation :${cOp} sValue : ${sValue} hasil :${final}`,
-  );
+  final = operation(cOp, fValue, sValue);
+
+  hCal.innerText = fValue + cOp + sValue;
+
+  dCal.innerText = final;
+
+  console.log(`${fValue} ${cOp} ${sValue}`);
 });
 
 cBtn.addEventListener("click", function () {
-  dCal.value = "";
+  dCal.innerText = "";
   sValue = "";
   cOp = "";
   fValue = "";
+  hCal.innerText = final;
 });
