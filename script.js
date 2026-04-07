@@ -3,6 +3,7 @@ let fValue = "";
 let sValue = "";
 let cOp = "";
 let result = "";
+let final = false;
 
 //Calculator Display
 
@@ -16,7 +17,6 @@ let opBtn = document.querySelectorAll(".opBtn");
 let rBtn = document.querySelector(".resultBtn");
 let dBtn = document.querySelector(".deleteBtn");
 let cBtn = document.querySelector(".clearBtn");
-
 //Basic Math Function
 
 const add = function (a, b) {
@@ -29,19 +29,19 @@ const multiply = function (a, b) {
   return a * b;
 };
 const divide = function (a, b) {
-  return a / b;
+  return b === 0 ? "ERROR" : a / b;
 };
 
 //Insert vBtn on nCal
 vBtn.forEach((value) => {
   value.addEventListener("click", function () {
-    if (nCal.innerText === "...") {
+    if (final || nCal.innerText === "...") {
       nCal.innerText = "";
+      final = false;
     }
-    const idBtn = this.id;
     const nBtn = this.innerText;
-
     nCal.innerText += nBtn;
+    const idBtn = this.id;
 
     console.log(`Value :${nBtn}`);
   });
@@ -49,6 +49,11 @@ vBtn.forEach((value) => {
 
 //Implement opBtn on Basic Math Function
 const operation = function (operator, fValue, sValue) {
+  if (fValue === "ERROR") {
+    alert("Reset kalkulator untuk memulai kembali!");
+    return "ERROR";
+  }
+
   if (fValue === null || isNaN(fValue)) {
     alert("Masukkan nilai pertama!!!");
   } else {
@@ -73,7 +78,7 @@ opBtn.forEach((event) => {
       fValue = result;
       cOp = this.innerText;
       hCal.innerText = result;
-      rCal.innerText = `${fValue} ${cOp} ${sValue}`;
+      rCal.innerText = `${fValue} ${cOp}...`;
       nCal.innerText = "";
     } else if (nCal.innerText !== "") {
       fValue = Number(nCal.innerText);
@@ -90,13 +95,18 @@ opBtn.forEach((event) => {
 
 //Logic on ResultBtn
 rBtn.addEventListener("click", function () {
+  if (fValue === "" || cOp === "") {
+    return;
+  }
   let sValue = Number(nCal.innerText);
   result = operation(cOp, fValue, sValue);
   rCal.innerText = `${fValue} ${cOp} ${sValue}`;
   nCal.innerText = result;
   fValue = result;
+  hCal.innerText = fValue;
   sValue = "";
   cOp = "";
+  final = true;
   console.log(`${fValue} ${cOp} ${sValue} = ${result}`);
 });
 
@@ -110,10 +120,11 @@ dBtn.addEventListener("click", function () {
 
 //Logic on ClearBtn
 cBtn.addEventListener("click", function () {
-  nCal.innerText = "";
+  nCal.innerText = "...";
   rCal.innerText = "";
   hCal.innerText = "";
   fValue = "";
   sValue = "";
   cOp = "";
+  final = false;
 });
