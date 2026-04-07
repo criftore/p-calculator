@@ -17,6 +17,7 @@ let opBtn = document.querySelectorAll(".opBtn");
 let rBtn = document.querySelector(".resultBtn");
 let dBtn = document.querySelector(".deleteBtn");
 let cBtn = document.querySelector(".clearBtn");
+let fBtn = document.querySelector(".fBtn");
 //Basic Math Function
 
 const add = function (a, b) {
@@ -45,6 +46,20 @@ vBtn.forEach((value) => {
 
     console.log(`Value :${nBtn}`);
   });
+});
+
+fBtn.addEventListener("click", function () {
+  if (final || nCal.innerText === "...") {
+    nCal.innerText = "0.";
+    final = false;
+    return;
+  }
+  if (!nCal.innerText.includes(".")) {
+    nCal.innerText += ".";
+  }
+  if (nCal.innerText === "") {
+    nCal.innerText = "0.";
+  }
 });
 
 //Implement opBtn on Basic Math Function
