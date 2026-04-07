@@ -33,21 +33,59 @@ const divide = function (a, b) {
   return b === 0 ? "ERROR" : a / b;
 };
 
+//Main function on input Value
+function valueInput(value) {
+  if (final || nCal.innerText === "...") {
+    nCal.innerText = "";
+    final = false;
+  }
+  nCal.innerText += value;
+  console.log(`Value :${value}`);
+}
+
 //Insert vBtn on nCal
 vBtn.forEach((value) => {
   value.addEventListener("click", function () {
-    if (final || nCal.innerText === "...") {
-      nCal.innerText = "";
-      final = false;
-    }
-    const nBtn = this.innerText;
-    nCal.innerText += nBtn;
-    const idBtn = this.id;
-
-    console.log(`Value :${nBtn}`);
+    valueInput(this.innerText);
   });
 });
 
+//Insert keymap on nCal
+window.addEventListener("keydown", function (event) {
+  if (event.key >= 0 && event.key <= 9) {
+    valueInput(event.key);
+  }
+  if (event.key === "Enter") {
+    event.preventDefault();
+    rBtn.click();
+  }
+  if (event.key === "Backspace") {
+    dBtn.click();
+  }
+  if (event.key === ".") {
+    fBtn.click();
+  }
+  if (
+    event.key === "+" ||
+    event.key === "-" ||
+    event.key === "*" ||
+    event.key === "/" ||
+    event.key.toUpperCase() === "X"
+  ) {
+    let operator =
+      event.key === "*" || event.key.toUpperCase() === "X" ? "X" : event.key;
+    opBtn.forEach((btn) => {
+      if (btn.innerText === operator) {
+        btn.click();
+      }
+    });
+  }
+  if (event.key.toUpperCase() === "C") {
+    cBtn.click();
+  }
+});
+
+//Floatbtn on Calculator
 fBtn.addEventListener("click", function () {
   if (final || nCal.innerText === "...") {
     nCal.innerText = "0.";
