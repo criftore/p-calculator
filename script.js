@@ -10,6 +10,7 @@ let final = false;
 let nCal = document.querySelector(".nowDisplay");
 let rCal = document.querySelector(".recentDisplay");
 let hCal = document.querySelector(".historyDisplay");
+let oCal = document.querySelector(".opDisplay");
 
 //Calculator Button
 let vBtn = document.querySelectorAll(".vBtn");
@@ -18,6 +19,7 @@ let rBtn = document.querySelector(".resultBtn");
 let dBtn = document.querySelector(".deleteBtn");
 let cBtn = document.querySelector(".clearBtn");
 let fBtn = document.querySelector(".fBtn");
+let pmBtn = document.querySelector(".pmBtn");
 //Basic Math Function
 
 const add = function (a, b) {
@@ -83,6 +85,9 @@ window.addEventListener("keydown", function (event) {
   if (event.key.toUpperCase() === "C") {
     cBtn.click();
   }
+  if (event.key === "_") {
+    pmBtn.click();
+  }
 });
 
 //Floatbtn on Calculator
@@ -97,6 +102,20 @@ fBtn.addEventListener("click", function () {
   }
   if (nCal.innerText === "") {
     nCal.innerText = "0.";
+  }
+});
+
+// Logic for Plus-Minus (+/-)
+pmBtn.addEventListener("click", function () {
+  if (nCal.innerText === "..." || nCal.innerText === "") return;
+
+  let currentVal = Number(nCal.innerText);
+  let toggledVal = currentVal * -1;
+
+  nCal.innerText = toggledVal.toString();
+
+  if (cOp === "") {
+    fValue = toggledVal;
   }
 });
 
@@ -131,16 +150,19 @@ opBtn.forEach((event) => {
       fValue = result;
       cOp = this.innerText;
       hCal.innerText = result;
-      rCal.innerText = `${fValue} ${cOp}...`;
+      rCal.innerText = `${fValue}`;
+      oCal.innerText = `${cOp}`;
       nCal.innerText = "";
     } else if (nCal.innerText !== "") {
       fValue = Number(nCal.innerText);
       cOp = this.innerText;
-      rCal.innerText = `${fValue} ${cOp} ...`;
+      rCal.innerText = `${fValue}`;
+      oCal.innerText = `${cOp}`;
       nCal.innerText = "";
     } else if (fValue !== "") {
       cOp = this.innerText;
-      rCal.innerText = `${fValue} ${cOp} ...`;
+      rCal.innerText = `${fValue}`;
+      oCal.innerText = `${cOp}`;
       nCal.innerText = "";
     }
   });
@@ -159,6 +181,7 @@ rBtn.addEventListener("click", function () {
   hCal.innerText = fValue;
   sValue = "";
   cOp = "";
+  oCal.innerText = "";
   final = true;
   console.log(`${fValue} ${cOp} ${sValue} = ${result}`);
 });
@@ -176,8 +199,10 @@ cBtn.addEventListener("click", function () {
   nCal.innerText = "...";
   rCal.innerText = "";
   hCal.innerText = "";
+  oCal.innerText = "";
   fValue = "";
   sValue = "";
   cOp = "";
+
   final = false;
 });

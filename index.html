@@ -3,38 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
     <title>Project Calculator</title>
   </head>
   <body>
     <div class="container">
-      <div class="frame">
-        <div class="calDisplay">
-          <div class="historyDisplay"></div>
-          <div class="recentDisplay"></div>
+      <div class="displayContainer">
+        <div class="historyDisplay"></div>
+        <div class="recentDisplay"></div>
+        <div class="onDisplay">
+          <div class="opDisplay"></div>
           <div class="nowDisplay">...</div>
         </div>
+      </div>
+      <div class="btnContainer">
         <div class="btnList">
-          <button class="vBtn" id="one">1</button>
-          <button class="vBtn" id="two">2</button>
-          <button class="vBtn" id="three">3</button>
+          <button class="clearBtn" id="clear">AC</button>
+          <button class="deleteBtn" id="delete">D</button>
+          <button class="pmBtn" id="plusminus">&plusmn;</button>
+          <button class="opBtn" id="add">+</button>
           <button class="vBtn" id="four">4</button>
           <button class="vBtn" id="five">5</button>
           <button class="vBtn" id="six">6</button>
+          <button class="opBtn" id="subtract">-</button>
           <button class="vBtn" id="seven">7</button>
           <button class="vBtn" id="eight">8</button>
           <button class="vBtn" id="nine">9</button>
-          <button class="vBtn" id="zero">0</button>
-        </div>
-        <div class="btnOperator">
-          <button class="fBtn" id="float">.</button>
-          <button class="opBtn" id="add">+</button>
-          <button class="opBtn" id="subtract">-</button>
           <button class="opBtn" id="multiply">X</button>
+          <button class="vBtn" id="one">1</button>
+          <button class="vBtn" id="two">2</button>
+          <button class="vBtn" id="three">3</button>
           <button class="opBtn" id="divide">/</button>
+          <button class="vBtn" id="zero">0</button>
+          <button class="fBtn" id="float">.</button>
+
           <button class="resultBtn" id="operator">=</button>
-          <button class="deleteBtn" id="delete">D</button>
-          <button class="clearBtn" id="clear">AC</button>
         </div>
       </div>
     </div>

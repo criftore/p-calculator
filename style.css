@@ -1,6 +1,97 @@
-.container {
-  align-items: center;
-  text-align: center;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
   justify-content: center;
-  padding: 20px;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.container {
+  width: 90%;
+  max-width: 320px;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.displayContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  min-height: 100px;
+}
+
+.btnList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  height: 60px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  transition:
+    transform 0.1s,
+    background-color 0.2s;
+}
+
+button:active {
+  transform: scale(0.95);
+  background-color: #ccc;
+}
+
+#zero {
+  grid-column: span 2;
+}
+
+.opBtn,
+.deleteBtn,
+.pmBtn {
+  background-color: #000000;
+  color: white;
+}
+.resultBtn {
+  background-color: #818181;
+  color: white;
+}
+.clearBtn {
+  background-color: #fa0c00;
+  color: white;
+}
+
+.historyDisplay {
+  text-align: left;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+.recentDisplay {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+.onDisplay {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
 }
